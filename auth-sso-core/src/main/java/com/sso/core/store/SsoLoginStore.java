@@ -3,8 +3,6 @@ package com.sso.core.store;
 import com.sso.core.entity.Conf;
 import com.sso.core.entity.SsoUser;
 import com.sso.core.util.JedisUtil;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.ShardedJedis;
 
 public class SsoLoginStore {
 
@@ -45,7 +43,7 @@ public class SsoLoginStore {
      */
     public static void put(String storeKey, SsoUser ssoUser){
         String redisKey = getRedisKey(storeKey);
-        JedisUtil.setValue(redisKey,ssoUser,SsoLoginStore.redisExpireMinite);
+        JedisUtil.setValue(redisKey,ssoUser,SsoLoginStore.redisExpireMinite*60);
     }
 
     public static void remove(String storeKey){

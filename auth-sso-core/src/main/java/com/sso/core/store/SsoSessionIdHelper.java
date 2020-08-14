@@ -22,9 +22,11 @@ public class SsoSessionIdHelper {
      * @return
      */
     public static String parseVersion(String sessionId){
-        String[] sessionIdStr = sessionId.split("_");
-        if (sessionIdStr.length==2 && sessionIdStr[1].trim().length()>0){
-            return sessionIdStr[1];
+        if (sessionId!=null && sessionId.trim().length()>0){
+            String[] sessionIdStr = sessionId.split("_");
+            if (sessionIdStr.length==2 && sessionIdStr[1].trim().length()>0){
+                return sessionIdStr[1];
+            }
         }
         return null;
     }
@@ -35,9 +37,11 @@ public class SsoSessionIdHelper {
      * @return
      */
     public static String parseStoreKey(String sessionId){
-        String[] sessionIdStr = sessionId.split("_");
-        if (sessionIdStr.length==2 && sessionIdStr[0].trim().length()>0){
-            return sessionIdStr[0];
+        if (sessionId!=null && sessionId.trim().length()>0){
+            String[] sessionIdStr = sessionId.split("_");
+            if (sessionIdStr.length==2 && sessionIdStr[0].trim().length()>0){
+                return sessionIdStr[0];
+            }
         }
         return null;
     }

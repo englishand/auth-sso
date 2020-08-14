@@ -1,8 +1,13 @@
 package com.sso.core.login;
 
+import com.sso.core.entity.Conf;
 import com.sso.core.entity.SsoUser;
 import com.sso.core.store.SsoLoginStore;
 import com.sso.core.store.SsoSessionIdHelper;
+import com.sso.core.util.CookieUtil;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class LoginHelper {
 
@@ -28,5 +33,15 @@ public class LoginHelper {
             }
         }
         return null;
+    }
+
+    /**
+     * 根据cookie获取sessionid
+     * @param request
+     * @return
+     */
+    public static String getSessoinIdByCookie(HttpServletRequest request){
+        String sessionid = CookieUtil.getCookieValue(request, Conf.SSO_SESSIONID);
+        return sessionid;
     }
 }

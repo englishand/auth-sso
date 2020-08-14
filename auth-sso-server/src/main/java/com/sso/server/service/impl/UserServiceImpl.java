@@ -4,11 +4,13 @@ import com.sso.core.entity.SsoUser;
 import com.sso.core.result.ResultT;
 import com.sso.core.store.SsoLoginStore;
 import com.sso.server.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -26,7 +28,9 @@ public class UserServiceImpl implements UserService {
             ssoUser.setPassword(password);
             ssoUser.setUserId("000000001");
             ssoUser.setUsername(username);
-            ssoUser.setVersion(UUID.randomUUID().toString().replaceAll("-",""));
+            String version = UUID.randomUUID().toString().replaceAll("-","");
+            log.info("UserService---version:"+version);
+            ssoUser.setVersion(version);
             return new ResultT<SsoUser>(ssoUser);
         }
         return new ResultT<SsoUser>(ResultT.FAIL_CODE,"用户名或密码错误");

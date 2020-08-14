@@ -5,7 +5,6 @@ import com.sso.core.entity.SsoUser;
 import com.sso.core.store.SsoLoginStore;
 import com.sso.core.store.SsoSessionIdHelper;
 import com.sso.core.util.CookieUtil;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,12 +18,21 @@ public class WebLoginHelper {
      */
     public static SsoUser loginCheck(HttpServletRequest request, HttpServletResponse response){
         String sessionId = CookieUtil.getCookieValue(request, Conf.SSO_SESSIONID);
-        if (sessionId!=null){
-            SsoUser ssoUser = LoginHelper.loginCheck(sessionId);
-            if (ssoUser!=null){
-                return ssoUser;
-            }
+        SsoUser ssoUser = LoginHelper.loginCheck(sessionId);
+        if (ssoUser!=null){
+            return ssoUser;
         }
+
+        //remove old cookie
+        removeSessionByCookie(request,response);
+        //set new cookie
+        String paramSessionId = request.getParameter(Conf.SSO_SESSIONID);
+        ssoUser = LoginHelper.loginCheck(paramSessionId);
+        if (ssoUser!=null){
+            CookieUtil.set(response,Conf.SSO_SESSIONID,paramSessionId,false);
+            return ssoUser;
+        }
+
         return null;
     }
 
@@ -62,5 +70,10 @@ public class WebLoginHelper {
         if (storeKey!=null){
             SsoLoginStore.remove(storeKey);
         }
+    }
+
+
+    public static void removeSessionByCookie(HttpServletRequest request,HttpServletResponse response){
+        CookieUtil.remove(request,response,Conf.SSO_SESSIONID);
     }
 }

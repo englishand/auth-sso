@@ -22,9 +22,11 @@ public class CookieUtil {
 
     public static Cookie getCookie(HttpServletRequest request,String key){
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie:cookies){
-            if (cookie.getName().equals(key)){
-                return cookie;
+        if (cookies!=null && cookies.length>0){
+            for (Cookie cookie:cookies){
+                if (cookie.getName().equals(key)){
+                    return cookie;
+                }
             }
         }
         return null;
