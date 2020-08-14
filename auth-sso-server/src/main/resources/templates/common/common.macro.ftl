@@ -87,7 +87,7 @@
         Powered by <b>ZHY-SSO</b> 1.0-SNAPSHOT
         <div class="pull-right hidden-xs">
             <strong>Copyright &copy; 2018-${.now?string('yyyy')} &nbsp;&nbsp;
-                <a href="https://github.com/englishand/auth_sso" target="_blank" >github</a>
+                <a href="https://github.com/englishand/auth-sso" target="_blank" >github</a>
             </strong><!-- All rights reserved. -->
         </div>
     </footer>

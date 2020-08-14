@@ -27,7 +27,7 @@
                 <h4>分布式单点登录框架</h4>
                 <br>
                 <p>
-                    <a target="_blank" href="https://github.com/englishand/auth_sso">Github</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a target="_blank" href="https://github.com/englishand/auth-sso">Github</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 </p>
                 <p></p>
             </div>
