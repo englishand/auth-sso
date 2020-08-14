@@ -23,7 +23,7 @@ public class WebLoginHelper {
             return ssoUser;
         }
 
-        //remove old cookie
+        //remove old cookie，因为setCookie的时候设置了maxAge,会存在遗留session
         removeSessionByCookie(request,response);
         //set new cookie
         String paramSessionId = request.getParameter(Conf.SSO_SESSIONID);
@@ -32,7 +32,6 @@ public class WebLoginHelper {
             CookieUtil.set(response,Conf.SSO_SESSIONID,paramSessionId,false);
             return ssoUser;
         }
-
         return null;
     }
 
@@ -72,7 +71,11 @@ public class WebLoginHelper {
         }
     }
 
-
+    /**
+     * 删除cookie
+     * @param request
+     * @param response
+     */
     public static void removeSessionByCookie(HttpServletRequest request,HttpServletResponse response){
         CookieUtil.remove(request,response,Conf.SSO_SESSIONID);
     }
