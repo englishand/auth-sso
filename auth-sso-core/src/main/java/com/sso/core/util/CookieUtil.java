@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CookieUtil {
 
+    //保存路径
     private static final String COOKIE_PATH="/";
-    private static final int COOKIE_MAX_AGE = Integer.MAX_VALUE;
+    //默认缓存时间，单位/秒，2H
+    private static final int COOKIE_MAX_AGE = 2*60*60;
 
     public static String getCookieValue(HttpServletRequest request,String key){
         Cookie cookie = getCookie(request,key);
